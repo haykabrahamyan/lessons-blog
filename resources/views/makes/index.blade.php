@@ -7,7 +7,9 @@
                 <a href="{{url('/')}}">Home</a>
                 <span>Makes</span>
             </div>
-            <a class="btn btn-success" href="{{url('makes/add')}}">Add Make</a>
+            @if(\Auth::user()->isStaff())
+                <a class="btn btn-success" href="{{url('makes/add')}}">Add Make</a>
+            @endif
 
             @if(session()->has('message'))
                 <div class="alert alert-success">

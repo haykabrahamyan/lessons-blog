@@ -22,6 +22,11 @@
                 @foreach($categories as $category)
                     <li class="menu-item"><a href="{{url('/categories/' . $category->id)}}">{{strtoupper($category->name)}}</a></li>
                 @endforeach
+                @if(\Auth::check())
+                    <li class="menu-item"><a href="{{url('/logout')}}">Logout</a></li>
+                @else
+                    <li class="menu-item"><a href="{{url('/login')}}">Login</a></li>
+                @endif
 
             </ul> <!-- .menu -->
 
@@ -31,6 +36,13 @@
             </form>
         </div> <!-- .main-navigation -->
 
-        <div class="mobile-navigation"></div>
+        <div  class="mobile-navigation">
+        </div>
+        @if(\Auth::check())
+            Hello {{\Auth::user()->name}}
+            <br>
+            Your Proffesion is {{\Auth::user()->profile()->first()->profesion ?? ''}}
+        @endif
+
     </div>
 </header>

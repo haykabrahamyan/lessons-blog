@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class HelloMiddleware
+class StaffMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,8 @@ class HelloMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $request->session()->put('ttt', 'oooooooooooooooo');
-        die("sdsds");
-        // Session::put('name', 'hayk');
-
-        // Session:get('name');
+        if (\Auth::user()->isUser())
+            return redirect('/');
         return $next($request);
     }
 }

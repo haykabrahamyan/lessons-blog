@@ -10,13 +10,16 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const STAFF_NAME = 'staff'; 
+    const USER_NAME = 'user'; 
+    const ADMIN_NAME = 'admin'; 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'user_type_id'
     ];
 
 
@@ -51,5 +54,28 @@ class User extends Authenticatable
 
     public function aaa(){
         echo $this->name;
+    }
+
+    public function getType(){
+        return $this->hasOne(UserTypes::class, 'id', 'user_type_id');
+    }
+
+    public function isStaff(){
+        if($this->getType()->pluck('name')->first() == self::STAFF_NAME){
+            return true;
+        }
+        return false;
+    }
+    public function isAdmin(){
+        if($this->getType()->pluck('name')->first() == self::ADMIN_NAME){
+            return true;
+        }
+        return false;
+    }
+    public function isUser(){
+        if($this->getType()->pluck('name')->first() == self::USER_NAME){
+            return true;
+        }
+        return false;
     }
 }
