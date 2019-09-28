@@ -33,13 +33,9 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
 
-    Route::group([ 'prefix' => 'makes'], function () {
-        Route::get('/', 'MakesController@index');
-    });
-
-    Route::group([ 'prefix' => 'models'], function () {
-        Route::get('/', 'ModelsController@index');
-    });
+    Route::get('/makes', 'MakesController@index');
+    Route::get('/models', 'ModelsController@index');
+    Route::get('/cars', 'CarsController@index');
     
     Route::group([ 'middleware' => 'staff'], function () {
         Route::group([ 'prefix' => 'models'], function () {
@@ -52,6 +48,14 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/add', 'MakesController@addMakePost');
             Route::get('/edit/{id?}', 'MakesController@edit');
             Route::get('/remove/{id?}', 'MakesController@remove');
+        });
+
+        Route::group([ 'prefix' => 'cars'], function () {
+            Route::get('/add', 'CarsController@addCars');
+            Route::post('/getModels', 'CarsController@getModels');
+            Route::post('/add', 'CarsController@addMakePost');
+            Route::get('/edit/{id?}', 'CarsController@edit');
+            Route::get('/remove/{id?}', 'CarsController@remove');
         });
     });
     

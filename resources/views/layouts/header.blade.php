@@ -15,6 +15,7 @@
                 <li class="menu-item {{(Request::segment(1) == 'about')? 'current-menu-item' : ''}}"><a href="{{url('about')}}">About</a></li>
                 <li class="menu-item {{(Request::segment(1) == 'makes')? 'current-menu-item' : ''}}"><a href="{{url('makes')}}">Makes</a></li>
                 <li class="menu-item {{(Request::segment(1) == 'models')? 'current-menu-item' : ''}}"><a href="{{url('models')}}">Models</a></li>
+                <li class="menu-item {{(Request::segment(1) == 'cars')? 'current-menu-item' : ''}}"><a href="{{url('cars')}}">Cars</a></li>
                 
                 @php 
                     $categories = \App\Http\Controllers\HomeController::getCategories();
@@ -27,6 +28,8 @@
                 @else
                     <li class="menu-item"><a href="{{url('/login')}}">Login</a></li>
                 @endif
+
+
 
             </ul> <!-- .menu -->
 

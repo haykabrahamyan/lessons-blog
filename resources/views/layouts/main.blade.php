@@ -108,7 +108,7 @@
 		<script src="{{asset('js/plugins.js')}}"></script>
 		<script src="{{asset('js/app.js')}}"></script>
        
-		
+		@yield('js')
 	</body>
 
 </html>
