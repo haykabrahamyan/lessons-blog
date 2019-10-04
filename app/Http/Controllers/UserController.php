@@ -29,9 +29,13 @@ class UserController extends Controller
         // $user = User::where('email','=', 'devabrahamyan@gmail.com')->orWhere('name', 'Hayk')->orderBy('id', "DESC")->offset(100)->limit(3)->get();
         // $user = User::find(1);
 
-        // $user = User::with(['posts','profile'])->whereHas('posts', function($q){
+        $user = User::with(['posts','profile'])->whereHas('posts', function($q){
+            $q->where('score', '>', 3);
+        })->get()->toArray();
+
+        // $user = User::with(['posts' => function($q){
         //     $q->where('score', '>', 3);
-        // })->get()->toArray();
+        // },'profile'])->get()->toArray();
 
         // $user = User::with('posts')->has('posts')->get()->toArray();
 

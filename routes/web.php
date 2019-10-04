@@ -63,5 +63,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
+Route::group([ 'middleware' => 'staff', 'prefix' => 'dashboard'], function () {
+    Route::get('/', 'Admin\DashboardController@index');
+    Route::get('/users', 'Admin\UserController@index');
+});
+
 Auth::routes();
 // Route::post('/login', 'Auth\LoginController@login');

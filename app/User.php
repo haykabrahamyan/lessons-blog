@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'user_type_id'
+        'name', 'email', 'password', 'user_type_id','last_name'
     ];
 
 
@@ -49,7 +49,14 @@ class User extends Authenticatable
     }
 
     public function setFullNameAttribute(){
-        return $this->first_name . ' ' . $this->last_name;
+        return $this->name . ' ' . $this->last_name;
+    }
+    public function setNameAttribute(){
+        return $this->name . '----- ' ;
+    }
+
+    public function getFullNameAttribute(){
+        return "{$this->name} {$this->last_name}";
     }
 
     public function aaa(){
@@ -78,4 +85,7 @@ class User extends Authenticatable
         }
         return false;
     }
+
+
+    // test code from hayk branch
 }
